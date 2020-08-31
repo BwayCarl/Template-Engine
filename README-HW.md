@@ -24,6 +24,7 @@
 
 ## *Installation* 
  ```npm i inquirer```
+
  ```npm i jest```
 
 ## *Usage*
