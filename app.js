@@ -13,52 +13,97 @@ const render = require("./Develop/lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const employeeInfo = [];
+
+const enterEmployeeInfo = () => {
 
 inquirer.prompt([
     { //Name
         type: "input",
         name: "name",
-        message:"Please enter full name."
-    },
-    { //Role
-        type: "checkbox",
-        name: "role",
-        message:"What is your role?",
-        choices: [
-            "Manager",
-            "Engineer",
-            "Intern"]
+        message:"Please enter employee's full name.",
+        validate: function validateName(name) {
+            return name !== '';
+        }
     },
     { //Email
         type: "input",
         name: "email",
-        message:"Please enter your email address."
+        message:"Please enter employee's email address.",
+        validate: function validateName(email) {
+            return email !== '';
+        }
     },
-    { //Manager Office Number
+    { //ID Number
         type: "input",
-        name: "officeNumber",
-        message:"If you are a Manager, please enter your office phone number."
+        name: "id",
+        message:"What is the employee's ID number?",
+        validate: function validateId(id) {
+            var isValid = !_.isNaN(parseFloat(id));
+            return isValid || "ID should be a number.";
+        }
     },
-    { //Engineer Github
-        type: "input",
-        name: "github",
-        message:"If you are an Engineer, please enter your Github user name."
-    },
-    { //Intern School
-        type: "input",
-        name: "school",
-        message:"If you are an Intern, please enter the school you attend."
-    },
-    { //More Employees?
-        type: "confirm",
-        name: "addAnother",
-        message:"Would you like to add another employee?"
-    },
-])
+    { //Role
+        type: "checkbox",
+        name: "role",
+        message:"What is the employee's job title?",
+        choices: [
+            "Manager",
+            "Engineer",
+            "Intern"]
+    }])
+.then(answers => {
+            const { role } = answers;
+
+            //SWITCH https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
+            //BREAK https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break
+        switch(role) {
+            //Manager Office Number
+            case "Manager":
+                specificQuestions(role, "officeNumber", "What is the Manager's office number?", commonAnswers);
+            break;
+            //Engineer Github
+            case "Engineer":
+                specificQuestions(role, "github", "What is the Engineer's Github profile username?", commonAnswers);
+            break;
+            //Intern School
+            case "Intern":
+                specificQuestions(role, "school", "Where does the Intern go to school?", commonAnswers);
+            break;
+        }
+    });
+}
+//     const specificQuestions = (role, )
+//     { 
+//         type: "input",
+//         name: "officeNumber",
+//         message:"If you are a Manager, please enter your office phone number."
+//     },
+//     {
+//         type: "input",
+//         name: "github",
+//         message:"If you are an Engineer, please enter your Github user name."
+//     },
+//     { 
+//         type: "input",
+//         name: "school",
+//         message:"If you are an Intern, please enter the school you attend."
+//     },
+//     { //More Employees?
+//         type: "confirm",
+//         name: "addAnother",
+//         message:"Would you like to add another employee?"
+//     },
+// ])
+// addEmployee(); 
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+
 render();
 
 // After you have your html, you're now ready to create an HTML file using the HTML
