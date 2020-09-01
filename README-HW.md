@@ -5,7 +5,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Node-README-Generator/network)
 [![GitHub stars](https://img.shields.io/github/stars/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Node-README-Generator/stargazers)
 ## Homework Assignment - Week 10
-#### RutgersCodingBootcamp / RUT-JER-FSF-PT-06-2020-U-C
+#### Rutgers Coding Bootcamp / RUT-JER-FSF-PT-06-2020-U-C
 
 ## *Table of Contents*
 - [Description](#description)
@@ -43,7 +43,7 @@
 ###  :movie_camera: [YouTube Video of the project in action.](https://www.youtube.com/watch?v=TpWVy2nwvtM)
 
 ## *Tests*
- ```npm test```
+ ```npm run test```
 
 ## *Contact Me*
  - Github: **[BwayCarl](https://github.com/BwayCarl)**
