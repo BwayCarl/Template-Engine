@@ -1,0 +1,22 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.jumbotron {
+    color: #f5f5f5;
+    background-color: rgb(13, 81, 184);
+}
+
+.card-header {
+    color: #f5f5f5;
+    background-color:  rgb(62, 114, 190);
+}
+
+.card-title {
+    color: #f5f5f5;
+}
+
+.fas {
+    color: #f5f5f5;
+}
+
