@@ -20,7 +20,7 @@ const enterEmployeeInfo = () => {
 inquirer.prompt([
 
     { //Role
-        type: "checkbox",
+        type: "list",
         name: "role",
         message:"What is the employee's job title?",
         choices: [
@@ -51,7 +51,7 @@ inquirer.prompt([
 .then(mainAnswers => {
             const { role } = mainAnswers;
 
-            //SWITCH -evaluates an expression, matching the expression's value to a case clause, and executes 
+            //SWITCH - evaluates an expression, matching the expression's value to a case clause, and executes 
             //          statements associated with that case, as well as statements in cases that follow the matching case.
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
 
@@ -73,7 +73,7 @@ inquirer.prompt([
 
             //Intern School
             case "Intern":
-                specificQuestions(role, "school", "Where does the Intern go to school?", MainAnswers);
+                specificQuestions(role, "school", "Where does the Intern go to school?", mainAnswers);
             break;
         }
     });
