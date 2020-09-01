@@ -63,7 +63,7 @@ inquirer.prompt([
 
             //Manager Office Number
             case "Manager":
-                specificQuestions(role, "officeNumber", "What is the Manager's office number?", mainAnswers);
+                specificQuestions(role, "officeNumber", "What is the Manager's office number? (XXX)XXX-XXXX", mainAnswers);
             break;
 
             //Engineer Github
