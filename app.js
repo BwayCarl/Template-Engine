@@ -13,36 +13,12 @@ const render = require("./Develop/lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const employeeInfo = [];
+const employeesInfo = [];
 
 const enterEmployeeInfo = () => {
 
 inquirer.prompt([
-    { //Name
-        type: "input",
-        name: "name",
-        message:"Please enter employee's full name.",
-        validate: function validateName(name) {
-            return name !== '';
-        }
-    },
-    { //Email
-        type: "input",
-        name: "email",
-        message:"Please enter employee's email address.",
-        validate: function validateName(email) {
-            return email !== '';
-        }
-    },
-    { //ID Number
-        type: "input",
-        name: "id",
-        message:"What is the employee's ID number?",
-        validate: function validateId(id) {
-            var isValid = !_.isNaN(parseFloat(id));
-            return isValid || "ID should be a number.";
-        }
-    },
+
     { //Role
         type: "checkbox",
         name: "role",
@@ -51,73 +27,125 @@ inquirer.prompt([
             "Manager",
             "Engineer",
             "Intern"]
-    }])
-.then(answers => {
-            const { role } = answers;
+    },
 
-            //SWITCH https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
-            //BREAK https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break
+    { //Name
+        type: "input",
+        name: "name",
+        message:"Please enter employee's full name."
+    },
+
+    { //ID Number
+        type: "input",
+        name: "id",
+        message:"What is the employee's ID number?"
+    },
+
+    { //Email
+        type: "input",
+        name: "email",
+        message:"Please enter employee's email address."
+    },
+
+])
+.then(mainAnswers => {
+            const { role } = mainAnswers;
+
+            //SWITCH -evaluates an expression, matching the expression's value to a case clause, and executes 
+            //          statements associated with that case, as well as statements in cases that follow the matching case.
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
+
+            //BREAK - terminates the current switch statement and transfers program control 
+            //          to the statement following the terminated statement.
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break
+
         switch(role) {
+
             //Manager Office Number
             case "Manager":
-                specificQuestions(role, "officeNumber", "What is the Manager's office number?", commonAnswers);
+                specificQuestions(role, "officeNumber", "What is the Manager's office number?", mainAnswers);
             break;
+
             //Engineer Github
             case "Engineer":
-                specificQuestions(role, "github", "What is the Engineer's Github profile username?", commonAnswers);
+                specificQuestions(role, "github", "What is the Engineer's Github profile username?", mainAnswers);
             break;
+
             //Intern School
             case "Intern":
-                specificQuestions(role, "school", "Where does the Intern go to school?", commonAnswers);
+                specificQuestions(role, "school", "Where does the Intern go to school?", MainAnswers);
             break;
         }
     });
 }
-//     const specificQuestions = (role, )
-//     { 
-//         type: "input",
-//         name: "officeNumber",
-//         message:"If you are a Manager, please enter your office phone number."
-//     },
-//     {
-//         type: "input",
-//         name: "github",
-//         message:"If you are an Engineer, please enter your Github user name."
-//     },
-//     { 
-//         type: "input",
-//         name: "school",
-//         message:"If you are an Intern, please enter the school you attend."
-//     },
-//     { //More Employees?
-//         type: "confirm",
-//         name: "addAnother",
-//         message:"Would you like to add another employee?"
-//     },
-// ])
-// addEmployee(); 
+    //Questions for specific roles.
+const specificQuestions = (role, inputType, message, mainAnswers) => {
+        inquirer.prompt ([
+                {
+                    type: "input",
+                    name: inputType,
+                    message: message
+                }
+            ])
 
+        .then(answers => {
+            let answer;
 
+            for (let key in answers) {
+                answer = answers[key];
+            }
+            const { name, id, email } = mainAnswers;
+            let employee;
+            
+            switch(role) {
+                case "Manager":
+                    employee = new Manager(name, id, email, answer);
+                break;
 
+                case "Engineer":
+                    employee = new Engineer(name, id, email, answer);
+                break;
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+                case "Intern":
+                    employee = new Intern(name, id, email, answer);
+                break;
+            }
+            employeesInfo.push(employee);
+            addEmployee();
+        });
 
-render();
+}
+const addEmployee = () => {
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
+    inquirer.prompt ([
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+        {
+            type: "confirm",
+            name: "addAnother",
+            message:"Would you like to add another employee?" 
+        }
+    ])
+                  
+    .then(answer => {
+        if (answer.addAnother === true) {
+            enterEmployeeInfo();
+        }
+        else {
+            const html = render(employeesInfo);
+            writeHTMLtoFile(html);
+        }
+    });
+}   // After the user has input all employees desired, call the `render` function (required
+    // above) and pass in an array containing all employee objects; the `render` function will
+    // generate and return a block of HTML including templated divs for each employee!
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+const writeHTMLtoFile = (html) => {
+    fs.writeFile(outputPath, html, function(err) {
+        if (err) {
+            return console.log(err);
+         }
+         console.log ("Your team HTML file is complete.")
+    });
+};
+
+enterEmployeeInfo();
