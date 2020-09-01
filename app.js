@@ -19,16 +19,6 @@ const enterEmployeeInfo = () => {
 
 inquirer.prompt([
 
-    { //Role
-        type: "list",
-        name: "role",
-        message:"What is the employee's job title?",
-        choices: [
-            "Manager",
-            "Engineer",
-            "Intern"]
-    },
-
     { //Name
         type: "input",
         name: "name",
@@ -45,6 +35,16 @@ inquirer.prompt([
         type: "input",
         name: "email",
         message:"Please enter employee's email address."
+    },
+    
+    { //Role
+        type: "list",
+        name: "role",
+        message:"What is the employee's job title?",
+        choices: [
+            "Manager",
+            "Engineer",
+            "Intern"]
     },
 
 ])
