@@ -10,6 +10,10 @@
 .card-header {
     color: #f5f5f5;
     background-color:  rgb(65, 123, 177);
+
+}
+.card.employee-card {
+    box-shadow: 2px 4px 4px rgb(156, 150, 150);
 }
 
 .card-title {
