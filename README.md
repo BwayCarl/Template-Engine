@@ -39,6 +39,11 @@ This application builds a Node Command Line Interface that takes in information 
  Templates, libraries and tests provided by Rutgers as a starting point for the assignment.
 
 ## *Screenshots* 
+![NPM Run Test](./Assets/01-npm_run_test.png)
+
+![Prompts](./Assets/02-Prompt_Questions.png)
+
+![HTML Rendering](./Assets/03-HTML_Rendering.png)
 
  ## *Video*
 
