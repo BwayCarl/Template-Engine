@@ -1,9 +1,9 @@
 # Template-Engine
 [![Personal IDBadge](https://img.shields.io/badge/Dev-BwayCarl-red)](https://bwaycarl.github.io/Portfolio/)
 [![GitHub license](https://img.shields.io/github/license/BwayCarl/Node-README-Generator?logo=MIT)](https://github.com/BwayCarl/Template-Engine/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Node-README-Generator/issues)
-[![GitHub forks](https://img.shields.io/github/forks/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Node-README-Generator/network)
-[![GitHub stars](https://img.shields.io/github/stars/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Node-README-Generator/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Template-Engine/issues)
+[![GitHub forks](https://img.shields.io/github/forks/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Template-Engine/network)
+[![GitHub stars](https://img.shields.io/github/stars/BwayCarl/Node-README-Generator)](https://github.com/BwayCarl/Template-Engine/stargazers)
 ## Homework Assignment - Week 10
 #### Rutgers Coding Bootcamp / RUT-JER-FSF-PT-06-2020-U-C
 
